@@ -21,7 +21,7 @@ func GetSession() *r.Session {
 // the default localhost:28015 or from the environment variables
 // DATABASE_PORT_28015_TCP_ADDR and DATABASE_PORT_28015_TCP_PORT for address and
 // port respectively
-func ConnectDatabase() {
+func ConnectDatabase(name string) {
 	var err error
 	var dbhost, dbport string
 
@@ -39,7 +39,7 @@ func ConnectDatabase() {
 
 	S, err = r.Connect(r.ConnectOpts{
 		Address:       dbpeer,
-		Database:      "pkr",
+		Database:      name,
 		DiscoverHosts: true,
 	})
 	if err != nil {
