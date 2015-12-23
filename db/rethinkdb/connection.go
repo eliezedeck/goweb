@@ -8,12 +8,13 @@ import (
 	r "github.com/dancannon/gorethink"
 )
 
-var s *r.Session
+// S is a pointer to a RethinkDB Session. Don't set it to something else!
+var S *r.Session
 
 // GetSession retyrbs a pointer to a `gorethink` Session struct which can be
 // used across manu goroutines
 func GetSession() *r.Session {
-	return s
+	return S
 }
 
 // ConnectDatabase establishes database session connection to RethinkDB using the
@@ -36,7 +37,7 @@ func ConnectDatabase() {
 	dbpeer := fmt.Sprintf("%s:%s", dbhost, dbport)
 	log.Printf("Connecting to %s ...", dbpeer)
 
-	s, err = r.Connect(r.ConnectOpts{
+	S, err = r.Connect(r.ConnectOpts{
 		Address:       dbpeer,
 		Database:      "pkr",
 		DiscoverHosts: true,
