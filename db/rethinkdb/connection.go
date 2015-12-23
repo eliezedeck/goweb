@@ -16,11 +16,11 @@ func GetSession() *r.Session {
 	return s
 }
 
-// SetupDatabase establishes database session connection to RethinkDB using the
+// ConnectDatabase establishes database session connection to RethinkDB using the
 // the default localhost:28015 or from the environment variables
 // DATABASE_PORT_28015_TCP_ADDR and DATABASE_PORT_28015_TCP_PORT for address and
 // port respectively
-func SetupDatabase() {
+func ConnectDatabase() {
 	var err error
 	var dbhost, dbport string
 
