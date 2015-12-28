@@ -5,12 +5,11 @@ import (
 	"log"
 	"net/http"
 
-	"goji.io"
-	"goji.io/pat"
+	"github.com/zenazn/goji/web"
 )
 
 // ServeStaticFiles asks Goji to serve static files in the specified directory
-func ServeStaticFiles(prefix, directorypath string, mux *goji.Mux) {
+func ServeStaticFiles(prefix, directorypath string, mux *web.Mux) {
 	log.Printf("Serving static files in %s", directorypath)
-	mux.Handle(pat.Get(fmt.Sprintf("%s*", prefix)), http.StripPrefix(prefix, http.FileServer(http.Dir(directorypath))))
+	mux.Handle(fmt.Sprintf("%s*", prefix), http.StripPrefix(prefix, http.FileServer(http.Dir(directorypath))))
 }
